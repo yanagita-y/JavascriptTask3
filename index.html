@@ -7,10 +7,24 @@
 </head>
 <body>
     <h1>ToDoリスト</h1>
-    <p><label>fizzNum:<input type="text" id="fizzNum" size="40" placeholder="整数値を入力してください"></label></p>
-    <p><label>buzzNum:<input type="text" id="buzzNum" size="40" placeholder="整数値を入力してください"></label></p>
-    <button onclick="FizzBuzz(fizzNum.value,buzzNum.value)">実行</button>
-    <p>【出力】</p>
+    <ul>
+      <li><input type="radio" id="all" name="choice" value="all"><label for="all">すべて</label></li>
+      <li><input type="radio" id="working" name="choice" value="working"><label for="working">作業中</label></li>
+      <li><input type="radio" id="done" name="choice" value="done"><label for="done">完了</label></li>
+    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>コメント</th>
+          <th>状態</th>
+        </tr>
+      </thead>
+      <tbody id="output">
+      </tbody>
+    </table>
+    <h2>新規タスクの追加</h2>
+    <p><label><input type="text" id="singletask"><button onclick="taskscript(singletask.value)">追加</button></label></p>
     <div id="output"></div>
     <script src="taskscript.js"></script>
 </body>

@@ -1,44 +1,25 @@
-const FizzBuzz = (fizzNum, buzzNum) => {
-    let outputtext = '';
+const taskscript = (taskname) => {
     const output = document.getElementById("output");
-    output.textContent = null;
-    outputtext = checkfizzbuzzInput(fizzNum);
-    if(outputtext !== ''){
-        const p = document.createElement('p');
-        p.textContent = outputtext;
-        output.appendChild(p);
-        return;
+    if(taskname !== ''){
+        const tr = document.createElement('tr');
+        output.appendChild(tr);
+        const td1 = document.createElement('td');
+        const id = output.childElementCount;
+        tr.appendChild(td1);
+        td1.textContent = id-1;
+        const td2 = document.createElement('td');
+        tr.appendChild(td2);
+        td2.textContent = taskname;
+        const td3 = document.createElement('td');
+        tr.appendChild(td3);
+        const button1 = document.createElement('button');
+        td3.appendChild(button1);
+        button1.textContent = "作業中";
+        const td4 = document.createElement('td');
+        tr.appendChild(td4);
+        const button2 = document.createElement('button');
+        td4.appendChild(button2);
+        button2.textContent = "削除";
+        document.getElementById("singletask").value = "";
     }
-    outputtext = checkfizzbuzzInput(buzzNum);
-    if(outputtext !== ''){
-        const p = document.createElement('p');
-        p.textContent = outputtext;
-        output.appendChild(p);
-        return;
-    }
-    const ul = document.createElement('ul');
-    output.appendChild(ul);
-    for( let i = 1 ; i<=99 ; i++ ) {
-        const li = document.createElement('li');
-        if(i % fizzNum === 0 && i % buzzNum === 0) {
-            li.textContent = `FizzBuzz ${i}`;
-            ul.appendChild(li);
-        }
-        else if(i % fizzNum === 0){
-            li.textContent = `Fizz ${i}`;
-            ul.appendChild(li);
-        }
-        else if(i % buzzNum === 0){
-            li.textContent = `Buzz ${i}`;
-            ul.appendChild(li);
-        }
-    }
-}
-
-const checkfizzbuzzInput = (value) => {
-    const check = value.match(/^[0-9]+$/);
-    if(check === null){
-        return '整数値を入力してください。';
-    }
-    return '';
 }
