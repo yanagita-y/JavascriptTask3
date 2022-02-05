@@ -1,5 +1,6 @@
 const taskscript = (taskname) => {
     const output = document.getElementById("output");
+    const tasks = {name: taskA, status: '作業中'};
     if(taskname !== ''){
         const tr = document.createElement('tr');
         output.appendChild(tr);
