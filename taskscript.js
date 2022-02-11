@@ -1,17 +1,18 @@
-const alltask = [];
+const tasks = [];
 
-const taskscript = (taskname) => {
-    if(taskname !== ''){
-        const tasks = {name: taskname, status: '作業中'};
-        alltask.push(tasks);
+const addTask = (param) => {
+    if(param !== ''){
+        const task = {name: param, status: '作業中'};
+        tasks.push(task);
         showTasks();
     }
 }
 
 const showTasks = () => {
     const output = document.getElementById("output");
-    output.textContent = null;
-    alltask.forEach((task, index) => {
+    output.textContent = '';
+    document.getElementById("singletask").value = "";
+    tasks.forEach((task, index) => {
         const tr = document.createElement('tr');
         const td1 = document.createElement('td');
         const td2 = document.createElement('td');
@@ -19,7 +20,6 @@ const showTasks = () => {
         const button1 = document.createElement('button');
         const td4 = document.createElement('td');
         const button2 = document.createElement('button');
-        document.getElementById("singletask").value = "";
         button1.textContent = "作業中";
         button2.textContent = "削除";
         td1.textContent = index;
