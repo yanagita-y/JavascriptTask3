@@ -8,6 +8,11 @@ const addTask = (param) => {
     }
 }
 
+const deltask = (index) =>{
+    tasks.splice(index,1);
+    showTasks();
+}
+
 const showTasks = () => {
     const output = document.getElementById("output");
     output.textContent = '';
@@ -20,6 +25,13 @@ const showTasks = () => {
         const button1 = document.createElement('button');
         const td4 = document.createElement('td');
         const button2 = document.createElement('button');
+        button2.value = index;
+//        button2.setAttribute('onclick', `deltask(${index})`);
+        // ここで「削除」をおした時にイベントを走らせたい
+        // https://teratail.com/questions/243340
+        button2.addEventListener("click", () => {
+            deltask(index);
+        })
         button1.textContent = "作業中";
         button2.textContent = "削除";
         td1.textContent = index;
