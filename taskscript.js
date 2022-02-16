@@ -26,19 +26,19 @@ const mkstatbutton = (td3, status ,index) =>{
     const statusButton = document.createElement('button');
     statusButton.textContent = status;
     td3.appendChild(statusButton);
-    // statusButton.addEventListener("click", () => {
-    //     statusButton.textContent = transtask(index);
-    // })
+    statusButton.addEventListener("click", () => {
+        statusButton.textContent = transtask(index);
+    })
 }
 
-// const transtask = (index) =>{
-//     if(tasks[index].status === "作業中"){
-//         tasks[index].status = "完了";
-//     }else{
-//         tasks[index].status = "作業中";
-//     }
-//     return tasks[index].status;
-// }
+const transtask = (index) =>{
+    if(tasks[index].status === "作業中"){
+        tasks[index].status = "完了";
+    }else{
+        tasks[index].status = "作業中";
+    }
+    return tasks[index].status;
+}
 
 const mktaskinfo = (td1,td2,index,taskname) =>{
     td1.textContent = index;
