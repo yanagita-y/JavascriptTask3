@@ -8,41 +8,41 @@ const addTask = (param) => {
     }
 }
 
-const deltask = (index) =>{
+const DelTask = (index) =>{
     tasks.splice(index,1);
     showTasks();
 }
 
-const mkdelbutton = (td4, index) =>{
+const makeDelButton = (TableData4, index) =>{
     const deleteButton = document.createElement('button');
     deleteButton.addEventListener("click", () => {
-        deltask(index);
+        DelTask(index);
     })
     deleteButton.textContent = "削除";
-    td4.appendChild(deleteButton);
+    TableData4.appendChild(deleteButton);
 }
 
-const mkstatbutton = (td3, status ,index) =>{
+const makeStatusButton = (TableData3, status ,index) =>{
     const statusButton = document.createElement('button');
     statusButton.textContent = status;
-    td3.appendChild(statusButton);
-    statusButton.addEventListener("click", () => {
-        statusButton.textContent = transtask(index);
+    TableData3.appendChild(statusButton);
+    statusButton.addEventListener('click', () => {
+        statusButton.textContent = changeStatus(index);
     })
 }
 
-const transtask = (index) =>{
-    if(tasks[index].status === "作業中"){
-        tasks[index].status = "完了";
-    }else{
-        tasks[index].status = "作業中";
+const changeStatus = (index) => {
+    if(tasks[index].status === '作業中'){
+        tasks[index].status = '完了';
+    } else {
+        tasks[index].status = '作業中';
     }
     return tasks[index].status;
 }
 
-const mktaskinfo = (td1,td2,index,taskname) =>{
-    td1.textContent = index;
-    td2.textContent = taskname;
+const makeTaskInfo = (TableData1,TableData2,index,taskname) =>{
+    TableData1.textContent = index;
+    TableData2.textContent = taskname;
 }
 
 const showTasks = () => {
@@ -50,18 +50,18 @@ const showTasks = () => {
     output.textContent = '';
     document.getElementById("singletask").value = "";
     tasks.forEach((task, index) => {
-        const tr = document.createElement('tr');
-        const td1 = document.createElement('td');
-        const td2 = document.createElement('td');
-        const td3 = document.createElement('td');
-        const td4 = document.createElement('td');
-        mktaskinfo(td1,td2,index,task.name);
-        mkstatbutton(td3,task.status,index);
-        mkdelbutton(td4,index);
-        output.appendChild(tr);
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        tr.appendChild(td3);
-        tr.appendChild(td4);
+        const TableRow = document.createElement('tr');
+        const TableData1 = document.createElement('td');
+        const TableData2 = document.createElement('td');
+        const TableData3 = document.createElement('td');
+        const TableData4 = document.createElement('td');
+        makeTaskInfo(TableData1,TableData2,index,task.name);
+        makeStatusButton(TableData3,task.status,index);
+        makeDelButton(TableData4,index);
+        output.appendChild(TableRow);
+        TableRow.appendChild(TableData1);
+        TableRow.appendChild(TableData2);
+        TableRow.appendChild(TableData3);
+        TableRow.appendChild(TableData4);
     });
 }
