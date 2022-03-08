@@ -8,24 +8,24 @@ const addTask = (param) => {
     }
 }
 
-const DelTask = (index) =>{
+const delTask = (index) =>{
     tasks.splice(index,1);
     showTasks();
 }
 
-const makeDelButton = (TableData4, index) =>{
+const makeDelButton = (deleteButtonTable, index) =>{
     const deleteButton = document.createElement('button');
-    deleteButton.addEventListener("click", () => {
-        DelTask(index);
+    deleteButton.addEventListener('click', () => {
+        delTask(index);
     })
-    deleteButton.textContent = "削除";
-    TableData4.appendChild(deleteButton);
+    deleteButton.textContent = '削除';
+    deleteButtonTable.appendChild(deleteButton);
 }
 
-const makeStatusButton = (TableData3, status ,index) =>{
+const makeStatusButton = (statusButtonTable, status ,index) =>{
     const statusButton = document.createElement('button');
     statusButton.textContent = status;
-    TableData3.appendChild(statusButton);
+    statusButtonTable.appendChild(statusButton);
     statusButton.addEventListener('click', () => {
         statusButton.textContent = changeStatus(index);
     })
@@ -40,28 +40,28 @@ const changeStatus = (index) => {
     return tasks[index].status;
 }
 
-const makeTaskInfo = (TableData1,TableData2,index,taskname) =>{
-    TableData1.textContent = index;
-    TableData2.textContent = taskname;
+const makeTaskInfo = (indexTable,tasknameTable,index,taskname) =>{
+    indexTable.textContent = index;
+    tasknameTable.textContent = taskname;
 }
 
 const showTasks = () => {
-    const output = document.getElementById("output");
+    const output = document.getElementById('output');
     output.textContent = '';
-    document.getElementById("singletask").value = "";
+    document.getElementById('singletask').value = '';
     tasks.forEach((task, index) => {
-        const TableRow = document.createElement('tr');
-        const TableData1 = document.createElement('td');
-        const TableData2 = document.createElement('td');
-        const TableData3 = document.createElement('td');
-        const TableData4 = document.createElement('td');
-        makeTaskInfo(TableData1,TableData2,index,task.name);
-        makeStatusButton(TableData3,task.status,index);
-        makeDelButton(TableData4,index);
-        output.appendChild(TableRow);
-        TableRow.appendChild(TableData1);
-        TableRow.appendChild(TableData2);
-        TableRow.appendChild(TableData3);
-        TableRow.appendChild(TableData4);
+        const titleTable = document.createElement('tr');
+        const indexTable = document.createElement('td');
+        const tasknameTable = document.createElement('td');
+        const statusButtonTable = document.createElement('td');
+        const deleteButtonTable = document.createElement('td');
+        makeTaskInfo(indexTable,tasknameTable,index,task.name);
+        makeStatusButton(statusButtonTable,task.status,index);
+        makeDelButton(deleteButtonTable,index);
+        output.appendChild(titleTable);
+        titleTable.appendChild(indexTable);
+        titleTable.appendChild(tasknameTable);
+        titleTable.appendChild(statusButtonTable);
+        titleTable.appendChild(deleteButtonTable);
     });
 }
