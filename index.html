@@ -8,7 +8,7 @@
 <body>
     <h1>ToDoリスト</h1>
     <ul>
-      <li><input type="radio" id="all" name="choice" value="all"><label for="all">すべて</label></li>
+      <li><input type="radio" id="all" name="choice" value="all" checked="true"><label for="all">すべて</label></li>
       <li><input type="radio" id="working" name="choice" value="working"><label for="working">作業中</label></li>
       <li><input type="radio" id="done" name="choice" value="done"><label for="done">完了</label></li>
     </ul>
@@ -24,7 +24,7 @@
       </tbody>
     </table>
     <h2>新規タスクの追加</h2>
-    <p><label><input type="text" id="singletask"><button onclick="taskscript(singletask.value)">追加</button></label></p>
+    <p><label><input type="text" id="singletask"><button onclick="addTask(singletask.value)">追加</button></label></p>
     <div id="output"></div>
     <script src="taskscript.js"></script>
 </body>

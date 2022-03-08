@@ -1,26 +1,67 @@
-const taskscript = (taskname) => {
-    const output = document.getElementById("output");
-    const tasks = {name: taskA, status: '作業中'};
-    if(taskname !== ''){
-        const tr = document.createElement('tr');
-        output.appendChild(tr);
-        const td1 = document.createElement('td');
-        const id = output.childElementCount;
-        tr.appendChild(td1);
-        td1.textContent = id-1;
-        const td2 = document.createElement('td');
-        tr.appendChild(td2);
-        td2.textContent = taskname;
-        const td3 = document.createElement('td');
-        tr.appendChild(td3);
-        const button1 = document.createElement('button');
-        td3.appendChild(button1);
-        button1.textContent = "作業中";
-        const td4 = document.createElement('td');
-        tr.appendChild(td4);
-        const button2 = document.createElement('button');
-        td4.appendChild(button2);
-        button2.textContent = "削除";
-        document.getElementById("singletask").value = "";
+const tasks = [];
+
+const addTask = (param) => {
+    if(param !== ''){
+        const task = {name: param, status: '作業中'};
+        tasks.push(task);
+        showTasks();
     }
+}
+
+const delTask = (index) =>{
+    tasks.splice(index,1);
+    showTasks();
+}
+
+const makeDelButton = (deleteButtonTable, index) =>{
+    const deleteButton = document.createElement('button');
+    deleteButton.addEventListener('click', () => {
+        delTask(index);
+    })
+    deleteButton.textContent = '削除';
+    deleteButtonTable.appendChild(deleteButton);
+}
+
+const makeStatusButton = (statusButtonTable, status ,index) =>{
+    const statusButton = document.createElement('button');
+    statusButton.textContent = status;
+    statusButtonTable.appendChild(statusButton);
+    statusButton.addEventListener('click', () => {
+        statusButton.textContent = changeStatus(index);
+    })
+}
+
+const changeStatus = (index) => {
+    if(tasks[index].status === '作業中'){
+        tasks[index].status = '完了';
+    } else {
+        tasks[index].status = '作業中';
+    }
+    return tasks[index].status;
+}
+
+const makeTaskInfo = (indexTable,tasknameTable,index,taskname) =>{
+    indexTable.textContent = index;
+    tasknameTable.textContent = taskname;
+}
+
+const showTasks = () => {
+    const output = document.getElementById('output');
+    output.textContent = '';
+    document.getElementById('singletask').value = '';
+    tasks.forEach((task, index) => {
+        const titleTable = document.createElement('tr');
+        const indexTable = document.createElement('td');
+        const tasknameTable = document.createElement('td');
+        const statusButtonTable = document.createElement('td');
+        const deleteButtonTable = document.createElement('td');
+        makeTaskInfo(indexTable,tasknameTable,index,task.name);
+        makeStatusButton(statusButtonTable,task.status,index);
+        makeDelButton(deleteButtonTable,index);
+        output.appendChild(titleTable);
+        titleTable.appendChild(indexTable);
+        titleTable.appendChild(tasknameTable);
+        titleTable.appendChild(statusButtonTable);
+        titleTable.appendChild(deleteButtonTable);
+    });
 }
