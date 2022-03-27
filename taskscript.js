@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const tasks = [];
 
@@ -49,7 +49,7 @@ const makeTaskInfo = (indexTable,tasknameTable,index,taskname) => {
 }
 
 const showTasks = () => {
-    var input_choice = document.querySelector("input[name=choice]:checked");
+    let input_choice = document.querySelector('input[name=choice]:checked');
     const output = document.getElementById('output');
     output.textContent = '';
     document.getElementById('singletask').value = '';
