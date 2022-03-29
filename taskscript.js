@@ -49,7 +49,7 @@ const makeTaskInfo = (indexTable,tasknameTable,index,taskname) => {
 }
 
 const showTasks = () => {
-    let input_choice = document.querySelector('input[name=choice]:checked');
+    const input_choice = document.querySelector('input[name=choice]:checked');
     const output = document.getElementById('output');
     output.textContent = '';
     document.getElementById('singletask').value = '';
